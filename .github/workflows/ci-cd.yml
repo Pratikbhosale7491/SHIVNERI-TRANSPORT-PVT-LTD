@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: SHIVNERI TRANSPORT CI/CD
 
 on:
   push:
@@ -8,15 +8,19 @@ jobs:
   build-and-push-docker:
     runs-on: ubuntu-latest
     steps:
+      # Checkout code
       - uses: actions/checkout@v3
 
-      # Docker login
+      # Setup Docker
+      - uses: docker/setup-buildx-action@v2
+
+      # Login to DockerHub
       - uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      # Backend Docker build & push
+      # Build and push backend
       - name: Build & Push Backend
         uses: docker/build-push-action@v3
         with:
@@ -24,7 +28,7 @@ jobs:
           push: true
           tags: pratik7491/shivneri-backend:latest
 
-      # Frontend Docker build & push
+      # Build and push frontend
       - name: Build & Push Frontend
         uses: docker/build-push-action@v3
         with:
@@ -32,20 +36,25 @@ jobs:
           push: true
           tags: pratik7491/shivneri-frontend:latest
 
-
-
   deploy-to-ec2:
     runs-on: ubuntu-latest
     needs: build-and-push-docker
     steps:
-      - name: Deploy on EC2
+      - name: Deploy to EC2
         uses: appleboy/ssh-action@v0.1.7
         with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_SSH_KEY }}
+          host: ${{ secrets.EC2_HOST }}         # EC2 Public IP
+          username: ${{ secrets.EC2_USER }}     # Usually 'ubuntu'
+          key: ${{ secrets.EC2_SSH_KEY }}       # Private PEM key content
           script: |
-            docker pull <dockerhub-username>/shivneri-backend:latest
+            # Backend deployment
+            docker pull pratik7491/shivneri-backend:latest
             docker stop shivneri-backend || true
             docker rm shivneri-backend || true
-            docker run -d --name shivneri-backend -p 8080:8080 <dockerhub-username>/shivneri-backend:latest
+            docker run -d --name shivneri-backend -p 8080:8080 pratik7491/shivneri-backend:latest
+
+            # Frontend deployment
+            docker pull pratik7491/shivneri-frontend:latest
+            docker stop shivneri-frontend || true
+            docker rm shivneri-frontend || true
+            docker run -d --name shivneri-frontend -p 3000:3000 pratik7491/shivneri-frontend:latest
