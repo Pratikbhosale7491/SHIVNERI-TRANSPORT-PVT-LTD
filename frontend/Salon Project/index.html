@@ -3,83 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HEy Elegance Beauty Salon - Where Beauty Meets Excellence</title>
-    <meta name="description" content="Experience luxury and professional care at Elegance Beauty Salon. Expert hair styling, beauty treatments, and premium services in the heart of the Fashion District.">
+    <title>SHIVNERI TRANSPORT - Reliable Transport Solutions Across India</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header -->
-    <header class="header" id="header">
-        <div class="container">
-            <nav class="nav">
-                <div class="nav__logo">
-                    <h2>Elegance Beauty Salon</h2>
-                </div>
-                <ul class="nav__menu" id="nav-menu">
-                    <li><a href="#home" class="nav__link">Home</a></li>
-                    <li><a href="#about" class="nav__link">About</a></li>
-                    <li><a href="#services" class="nav__link">Services</a></li>
-                    <li><a href="#gallery" class="nav__link">Gallery</a></li>
-                    <li><a href="#team" class="nav__link">Team</a></li>
-                    <li><a href="#testimonials" class="nav__link">Reviews</a></li>
-                    <li><a href="#contact" class="nav__link">Contact</a></li>
-                </ul>
-                <div class="nav__cta">
-                    <a href="#booking" class="btn btn--primary">Book Now</a>
-                </div>
-                <div class="nav__toggle" id="nav-toggle">
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <div class="nav-brand">
+                <h2>🚛 SHIVNERI TRANSPORT</h2>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <a href="#tracking" class="nav-link">Track</a>
+            </div>
+            <div class="nav-actions">
+                <span class="nav-phone">📞 +91-9876543210</span>
+                <button class="btn btn--primary btn--sm">Login</button>
+                <button class="nav-toggle" id="nav-toggle">
                     <span></span>
                     <span></span>
                     <span></span>
-                </div>
-            </nav>
+                </button>
+            </div>
         </div>
-    </header>
+    </nav>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero__content">
-            <div class="container">
-                <div class="hero__text">
-                    <h1 class="hero__title">Where Beauty Meets Excellence</h1>
-                    <p class="hero__subtitle">Experience luxury and professional care at our full-service beauty salon. Our expert team is dedicated to enhancing your natural beauty with premium services and personalized attention.</p>
-                    <div class="hero__buttons">
-                        <a href="#booking" class="btn btn--primary btn--lg">Book Appointment</a>
-                        <a href="#services" class="btn btn--outline btn--lg">View Services</a>
+        <div class="hero-bg" style="background-image: url('https://images.pexels.com/photos/188679/pexels-photo-188679.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop');">
+            <div class="hero-overlay">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1 class="hero-title">Reliable Transport Solutions Across India</h1>
+                        <p class="hero-subtitle">Professional logistics services with real-time tracking, secure handling, and timely delivery for all your transportation needs.</p>
+                        <div class="hero-actions">
+                            <button class="btn btn--primary btn--lg" onclick="scrollToSection('quote-form')">Get Quote</button>
+                            <button class="btn btn--outline btn--lg" onclick="scrollToSection('tracking')">Track Shipment</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="hero__overlay"></div>
     </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
+    <!-- Carousel Section -->
+    <section class="carousel-section">
         <div class="container">
-            <div class="section__header">
-                <h2 class="section__title">About Elegance Beauty Salon</h2>
-                <p class="section__subtitle">Your trusted partner in beauty and wellness</p>
-            </div>
-            <div class="about__content">
-                <div class="about__text">
-                    <h3>Our Story</h3>
-                    <p>For over a decade, Elegance Beauty Salon has been at the forefront of beauty innovation, providing exceptional services that enhance your natural radiance. Located in the heart of the Fashion District, we've built our reputation on excellence, professionalism, and personalized care.</p>
-                    <p>Our team of skilled professionals stays current with the latest trends and techniques, ensuring you receive the highest quality services in a luxurious, relaxing environment.</p>
-                    <div class="about__features">
-                        <div class="feature">
-                            <h4>Professional Excellence</h4>
-                            <p>Certified stylists and beauty experts</p>
+            <div class="carousel-container">
+                <div class="carousel" id="carousel">
+                    <div class="carousel-slide active">
+                        <img src="https://images.pexels.com/photos/33365820/pexels-photo-33365820.jpeg?auto=compress&cs=tinysrgb&w=1200&h=600&fit=crop" alt="Express Delivery">
+                        <div class="carousel-caption">
+                            <h3>Express Delivery Services</h3>
+                            <p>Fast and reliable delivery across all major cities</p>
                         </div>
-                        <div class="feature">
-                            <h4>Premium Products</h4>
-                            <p>High-quality, salon-grade products</p>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.pexels.com/photos/20429095/pexels-photo-20429095.jpeg?auto=compress&cs=tinysrgb&w=1200&h=600&fit=crop" alt="Freight Transport">
+                        <div class="carousel-caption">
+                            <h3>Heavy Freight Transport</h3>
+                            <p>Specialized equipment for bulk cargo transportation</p>
                         </div>
-                        <div class="feature">
-                            <h4>Personalized Care</h4>
-                            <p>Customized treatments for every client</p>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.pexels.com/photos/1420744/pexels-photo-1420744.jpeg?auto=compress&cs=tinysrgb&w=1200&h=600&fit=crop" alt="Warehouse Solutions">
+                        <div class="carousel-caption">
+                            <h3>Warehouse Solutions</h3>
+                            <p>Secure storage with advanced inventory management</p>
                         </div>
                     </div>
                 </div>
+                <div class="carousel-dots" id="carousel-dots"></div>
             </div>
         </div>
     </section>
@@ -87,454 +88,414 @@
     <!-- Services Section -->
     <section class="services" id="services">
         <div class="container">
-            <div class="section__header">
-                <h2 class="section__title">Our Services</h2>
-                <p class="section__subtitle">Comprehensive beauty solutions tailored for you</p>
+            <div class="section-header">
+                <h2>Our Services</h2>
+                <p>Comprehensive transport solutions tailored to your needs</p>
             </div>
-            <div class="services__categories">
-                <!-- Hair Services -->
-                <div class="service__category">
-                    <h3 class="category__title">Hair Services</h3>
-                    <div class="services__grid">
-                        <div class="service__item">
-                            <div class="service__header">
-                                <h4>Men's Haircut</h4>
-                                <span class="service__price">₹299</span>
-                            </div>
-                            <p class="service__description">Professional cut styled to perfection</p>
-                            <span class="service__duration">30 mins</span>
-                        </div>
-                        <div class="service__item">
-                            <div class="service__header">
-                                <h4>Women's Haircut</h4>
-                                <span class="service__price">₹499</span>
-                            </div>
-                            <p class="service__description">Precision cut with blow-dry styling</p>
-                            <span class="service__duration">45 mins</span>
-                        </div>
-                        <div class="service__item">
-                            <div class="service__header">
-                                <h4>Hair Wash & Blow Dry</h4>
-                                <span class="service__price">₹350</span>
-                            </div>
-                            <p class="service__description">Deep cleansing with professional styling</p>
-                            <span class="service__duration">30 mins</span>
-                        </div>
-                        <div class="service__item">
-                            <div class="service__header">
-                                <h4>Hair Color - Global</h4>
-                                <span class="service__price">₹2999</span>
-                            </div>
-                            <p class="service__description">Full hair coloring with premium products</p>
-                            <span class="service__duration">2 hours</span>
-                        </div>
-                        <div class="service__item">
-                            <div class="service__header">
-                                <h4>Hair Highlights</h4>
-                                <span class="service__price">₹3999</span>
-                            </div>
-                            <p class="service__description">Professional highlighting technique</p>
-                            <span class="service__duration">2.5 hours</span>
-                        </div>
-                        <div class="service__item">
-                            <div class="service__header">
-                                <h4>Hair Spa Treatment</h4>
-                                <span class="service__price">₹1299</span>
-                            </div>
-                            <p class="service__description">Deep conditioning and scalp massage</p>
-                            <span class="service__duration">60 mins</span>
-                        </div>
-                    </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🏃‍♂️</div>
+                    <h3>Local Delivery</h3>
+                    <p>Same-day delivery within city limits with real-time tracking</p>
+                    <button class="btn btn--secondary btn--sm">Learn More</button>
                 </div>
-
-                <!-- Beauty Services -->
-                <div class="service__category">
-                    <h3 class="category__title">Beauty Services</h3>
-                    <div class="services__grid">
-                        <div class="service__item">
-                            <div class="service__header">
-                                <h4>Basic Facial</h4>
-                                <span class="service__price">₹1000</span>
-                            </div>
-                            <p class="service__description">Deep cleansing and moisturizing facial</p>
-                            <span class="service__duration">60 mins</span>
-                        </div>
-                        <div class="service__item">
-                            <div class="service__header">
-                                <h4>Luxury Facial</h4>
-                                <span class="service__price">₹3500</span>
-                            </div>
-                            <p class="service__description">Premium anti-aging treatment</p>
-                            <span class="service__duration">90 mins</span>
-                        </div>
-                        <div class="service__item">
-                            <div class="service__header">
-                                <h4>Manicure</h4>
-                                <span class="service__price">₹700</span>
-                            </div>
-                            <p class="service__description">Complete hand and nail care</p>
-                            <span class="service__duration">45 mins</span>
-                        </div>
-                        <div class="service__item">
-                            <div class="service__header">
-                                <h4>Pedicure</h4>
-                                <span class="service__price">₹900</span>
-                            </div>
-                            <p class="service__description">Foot spa with nail treatment</p>
-                            <span class="service__duration">60 mins</span>
-                        </div>
-                        <div class="service__item">
-                            <div class="service__header">
-                                <h4>Full Legs Waxing</h4>
-                                <span class="service__price">₹1199</span>
-                            </div>
-                            <p class="service__description">Professional leg waxing</p>
-                            <span class="service__duration">45 mins</span>
-                        </div>
-                        <div class="service__item">
-                            <div class="service__header">
-                                <h4>Eyebrow Threading</h4>
-                                <span class="service__price">₹149</span>
-                            </div>
-                            <p class="service__description">Perfect eyebrow shaping</p>
-                            <span class="service__duration">15 mins</span>
-                        </div>
-                    </div>
+                <div class="service-card">
+                    <div class="service-icon">🚛</div>
+                    <h3>Long Haul Transport</h3>
+                    <p>Interstate shipping with secure handling and timely delivery</p>
+                    <button class="btn btn--secondary btn--sm">Learn More</button>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📦</div>
+                    <h3>Freight Services</h3>
+                    <p>Bulk cargo transportation with specialized equipment</p>
+                    <button class="btn btn--secondary btn--sm">Learn More</button>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏢</div>
+                    <h3>Warehousing</h3>
+                    <p>Secure storage solutions with inventory management</p>
+                    <button class="btn btn--secondary btn--sm">Learn More</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section class="gallery" id="gallery">
+    <!-- Quote Form Section -->
+    <section class="quote-section" id="quote-form">
         <div class="container">
-            <div class="section__header">
-                <h2 class="section__title">Our Gallery</h2>
-                <p class="section__subtitle">Showcasing our artistic excellence</p>
+            <div class="section-header">
+                <h2>Get Your Quote</h2>
+                <p>Fill out the form below for instant pricing</p>
             </div>
-            <div class="gallery__grid">
-                <div class="gallery__item" data-category="hair">
-                    <div class="gallery__placeholder">
-                        <h4>Hair Styling</h4>
-                        <p>Before and after hair transformation</p>
-                    </div>
-                </div>
-                <div class="gallery__item" data-category="color">
-                    <div class="gallery__placeholder">
-                        <h4>Hair Color</h4>
-                        <p>Beautiful hair color results</p>
-                    </div>
-                </div>
-                <div class="gallery__item" data-category="bridal">
-                    <div class="gallery__placeholder">
-                        <h4>Bridal Styling</h4>
-                        <p>Elegant bridal hair and makeup</p>
-                    </div>
-                </div>
-                <div class="gallery__item" data-category="mens">
-                    <div class="gallery__placeholder">
-                        <h4>Men's Grooming</h4>
-                        <p>Professional men's cuts and styling</p>
-                    </div>
-                </div>
-                <div class="gallery__item" data-category="beauty">
-                    <div class="gallery__placeholder">
-                        <h4>Beauty Treatments</h4>
-                        <p>Relaxing facial and beauty services</p>
-                    </div>
-                </div>
-                <div class="gallery__item" data-category="nails">
-                    <div class="gallery__placeholder">
-                        <h4>Nail Art</h4>
-                        <p>Creative manicure and pedicure designs</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Team Section -->
-    <section class="team" id="team">
-        <div class="container">
-            <div class="section__header">
-                <h2 class="section__title">Meet Our Team</h2>
-                <p class="section__subtitle">Expert professionals dedicated to your beauty</p>
-            </div>
-            <div class="team__grid">
-                <div class="team__member">
-                    <div class="member__avatar">
-                        <div class="avatar__placeholder">PS</div>
-                    </div>
-                    <div class="member__info">
-                        <h4>Priya Sharma</h4>
-                        <p class="member__role">Senior Hair Stylist</p>
-                        <p class="member__experience">8 years experience</p>
-                        <div class="member__specialties">
-                            <span>Hair Coloring</span>
-                            <span>Bridal Styling</span>
-                            <span>Hair Treatments</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="team__member">
-                    <div class="member__avatar">
-                        <div class="avatar__placeholder">RA</div>
-                    </div>
-                    <div class="member__info">
-                        <h4>Rohit Anand</h4>
-                        <p class="member__role">Master Colorist</p>
-                        <p class="member__experience">12 years experience</p>
-                        <div class="member__specialties">
-                            <span>Color Correction</span>
-                            <span>Highlights</span>
-                            <span>Creative Coloring</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="team__member">
-                    <div class="member__avatar">
-                        <div class="avatar__placeholder">AM</div>
-                    </div>
-                    <div class="member__info">
-                        <h4>Anjali Mehta</h4>
-                        <p class="member__role">Beauty Specialist</p>
-                        <p class="member__experience">6 years experience</p>
-                        <div class="member__specialties">
-                            <span>Facials</span>
-                            <span>Waxing</span>
-                            <span>Threading</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="team__member">
-                    <div class="member__avatar">
-                        <div class="avatar__placeholder">KS</div>
-                    </div>
-                    <div class="member__info">
-                        <h4>Karan Singh</h4>
-                        <p class="member__role">Men's Grooming Expert</p>
-                        <p class="member__experience">5 years experience</p>
-                        <div class="member__specialties">
-                            <span>Men's Cuts</span>
-                            <span>Beard Styling</span>
-                            <span>Shaving</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials" id="testimonials">
-        <div class="container">
-            <div class="section__header">
-                <h2 class="section__title">What Our Clients Say</h2>
-                <p class="section__subtitle">Real reviews from satisfied customers</p>
-            </div>
-            <div class="testimonials__grid">
-                <div class="testimonial">
-                    <div class="testimonial__rating">★★★★★</div>
-                    <p class="testimonial__text">"Absolutely love my new haircut! The team is professional and the salon has such a relaxing atmosphere."</p>
-                    <div class="testimonial__author">
-                        <h5>Sarah Johnson</h5>
-                        <span>Hair Cut & Style</span>
-                    </div>
-                </div>
-                <div class="testimonial">
-                    <div class="testimonial__rating">★★★★★</div>
-                    <p class="testimonial__text">"Best facial I've ever had! My skin is glowing and the staff made me feel so pampered."</p>
-                    <div class="testimonial__author">
-                        <h5>Meera Gupta</h5>
-                        <span>Luxury Facial</span>
-                    </div>
-                </div>
-                <div class="testimonial">
-                    <div class="testimonial__rating">★★★★★</div>
-                    <p class="testimonial__text">"Great experience for men's grooming. Karan really knows his craft and gave me exactly what I wanted."</p>
-                    <div class="testimonial__author">
-                        <h5>David Kumar</h5>
-                        <span>Men's Haircut</span>
-                    </div>
-                </div>
-                <div class="testimonial">
-                    <div class="testimonial__rating">★★★★★</div>
-                    <p class="testimonial__text">"The hair coloring came out perfect! Rohit is truly an artist with color. Highly recommend!"</p>
-                    <div class="testimonial__author">
-                        <h5>Lisa Chen</h5>
-                        <span>Hair Color</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Booking Section -->
-    <section class="booking" id="booking">
-        <div class="container">
-            <div class="section__header">
-                <h2 class="section__title">Book Your Appointment</h2>
-                <p class="section__subtitle">Schedule your beauty transformation today</p>
-            </div>
-            <div class="booking__content">
-                <form class="booking__form" id="booking-form">
-                    <div class="form__row">
+            <div class="quote-form-container">
+                <form class="quote-form" id="quote-form-element">
+                    <div class="form-grid">
                         <div class="form-group">
-                            <label class="form-label">Full Name</label>
-                            <input type="text" class="form-control" name="name" required>
+                            <label class="form-label" for="origin">Origin City</label>
+                            <input type="text" id="origin" class="form-control" placeholder="From where?" required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Phone Number</label>
-                            <input type="tel" class="form-control" name="phone" required>
-                        </div>
-                    </div>
-                    <div class="form__row">
-                        <div class="form-group">
-                            <label class="form-label">Email Address</label>
-                            <input type="email" class="form-control" name="email" required>
+                            <label class="form-label" for="destination">Destination City</label>
+                            <input type="text" id="destination" class="form-control" placeholder="To where?" required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Service</label>
-                            <select class="form-control" name="service" required>
-                                <option value="">Select a service</option>
-                                <option value="mens-haircut">Men's Haircut - ₹299</option>
-                                <option value="womens-haircut">Women's Haircut - ₹499</option>
-                                <option value="hair-color">Hair Color - ₹2999</option>
-                                <option value="highlights">Hair Highlights - ₹3999</option>
-                                <option value="facial">Luxury Facial - ₹3500</option>
-                                <option value="manicure">Manicure - ₹700</option>
-                                <option value="pedicure">Pedicure - ₹900</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form__row">
-                        <div class="form-group">
-                            <label class="form-label">Preferred Date</label>
-                            <input type="date" class="form-control" name="date" required>
+                            <label class="form-label" for="weight">Weight/Size</label>
+                            <input type="text" id="weight" class="form-control" placeholder="e.g., 50kg" required>
                         </div>
                         <div class="form-group">
-                            <label class="form-label">Preferred Time</label>
-                            <select class="form-control" name="time" required>
-                                <option value="">Select time</option>
-                                <option value="09:00">9:00 AM</option>
-                                <option value="10:00">10:00 AM</option>
-                                <option value="11:00">11:00 AM</option>
-                                <option value="12:00">12:00 PM</option>
-                                <option value="13:00">1:00 PM</option>
-                                <option value="14:00">2:00 PM</option>
-                                <option value="15:00">3:00 PM</option>
-                                <option value="16:00">4:00 PM</option>
-                                <option value="17:00">5:00 PM</option>
-                                <option value="18:00">6:00 PM</option>
-                            </select>
+                            <label class="form-label" for="date">Date Needed</label>
+                            <input type="date" id="date" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="name">Full Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="form-control" placeholder="+91 9876543210" required>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="form-label">Special Requests (Optional)</label>
-                        <textarea class="form-control" name="message" rows="3" placeholder="Any special requirements or preferences..."></textarea>
-                    </div>
-                    <button type="submit" class="btn btn--primary btn--full-width">Book Appointment</button>
+                    <button type="submit" class="btn btn--primary btn--full-width">Get Quote</button>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
+    <!-- How It Works Section -->
+    <section class="how-it-works">
         <div class="container">
-            <div class="section__header">
-                <h2 class="section__title">Get In Touch</h2>
-                <p class="section__subtitle">We'd love to hear from you</p>
+            <div class="section-header">
+                <h2>How It Works</h2>
+                <p>Simple steps to get your shipment delivered</p>
             </div>
-            <div class="contact__content">
-                <div class="contact__info">
-                    <div class="contact__item">
-                        <h4>Address</h4>
-                        <p>123 Beauty Street<br>Fashion District, City 12345</p>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Book/Request Quote</h3>
+                        <p>Fill our simple form or call us directly</p>
                     </div>
-                    <div class="contact__item">
-                        <h4>Phone</h4>
-                        <p><a href="tel:+1-555-SALON-01">+1-555-SALON-01</a></p>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Pickup Scheduled</h3>
+                        <p>Our team arranges convenient pickup time</p>
                     </div>
-                    <div class="contact__item">
-                        <h4>Email</h4>
-                        <p><a href="mailto:info@elegancebeauty.com">info@elegancebeauty.com</a></p>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Track Shipment</h3>
+                        <p>Monitor your package in real-time</p>
                     </div>
-                    <div class="contact__item">
-                        <h4>Hours</h4>
-                        <div class="hours">
-                            <p>Monday - Wednesday: 9:00 AM - 8:00 PM</p>
-                            <p>Thursday - Friday: 9:00 AM - 9:00 PM</p>
-                            <p>Saturday: 8:00 AM - 6:00 PM</p>
-                            <p>Sunday: 10:00 AM - 5:00 PM</p>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Safe Delivery</h3>
+                        <p>Receive your shipment securely at destination</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fleet Section -->
+    <section class="fleet">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Fleet</h2>
+                <p>Modern vehicles for all your transport needs</p>
+            </div>
+            <div class="fleet-grid">
+                <div class="fleet-card">
+                    <img src="https://images.unsplash.com/photo-1558618666-fbd25c85cd64?w=400&h=300&fit=crop" alt="Motorcycles">
+                    <div class="fleet-content">
+                        <h3>Motorcycles</h3>
+                        <p>Quick delivery for small packages</p>
+                    </div>
+                </div>
+                <div class="fleet-card">
+                    <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=400&h=300&fit=crop" alt="Vans">
+                    <div class="fleet-content">
+                        <h3>Vans</h3>
+                        <p>Medium cargo and furniture transport</p>
+                    </div>
+                </div>
+                <div class="fleet-card">
+                    <img src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=400&h=300&fit=crop" alt="Trucks">
+                    <div class="fleet-content">
+                        <h3>Trucks</h3>
+                        <p>Heavy duty freight transportation</p>
+                    </div>
+                </div>
+                <div class="fleet-card">
+                    <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop" alt="Containers">
+                    <div class="fleet-content">
+                        <h3>Containers</h3>
+                        <p>Large scale industrial shipping</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coverage Map Section -->
+    <section class="coverage-map">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Service Coverage</h2>
+                <p>Serving major cities and states across India</p>
+            </div>
+            <div class="coverage-content">
+                <div class="coverage-map-visual">
+                    <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop" alt="India Map">
+                </div>
+                <div class="coverage-details">
+                    <h3>Currently Serving</h3>
+                    <div class="coverage-list">
+                        <span class="coverage-item">Maharashtra</span>
+                        <span class="coverage-item">Gujarat</span>
+                        <span class="coverage-item">Karnataka</span>
+                        <span class="coverage-item">Delhi NCR</span>
+                        <span class="coverage-item">Rajasthan</span>
+                        <span class="coverage-item">Uttar Pradesh</span>
+                    </div>
+                    <div class="expanding-soon">
+                        <h4>Expanding Soon</h4>
+                        <p>Tamil Nadu • West Bengal • Andhra Pradesh</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Plans Section -->
+    <section class="pricing-plans">
+        <div class="container">
+            <div class="section-header">
+                <h2>Pricing Plans</h2>
+                <p>Flexible pricing options for every budget</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Basic</h3>
+                        <div class="pricing-price">₹99<span>/shipment</span></div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Local delivery</li>
+                        <li>2-day delivery</li>
+                        <li>Basic tracking</li>
+                        <li>Email support</li>
+                    </ul>
+                    <button class="btn btn--outline btn--full-width">Choose Basic</button>
+                </div>
+                <div class="pricing-card pricing-card--featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3>Standard</h3>
+                        <div class="pricing-price">₹299<span>/shipment</span></div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Regional transport</li>
+                        <li>Next-day delivery</li>
+                        <li>Live tracking</li>
+                        <li>Phone support</li>
+                        <li>Insurance included</li>
+                    </ul>
+                    <button class="btn btn--primary btn--full-width">Choose Standard</button>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Premium</h3>
+                        <div class="pricing-price">₹599<span>/shipment</span></div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Nationwide delivery</li>
+                        <li>Same-day delivery</li>
+                        <li>Premium tracking</li>
+                        <li>24/7 support</li>
+                        <li>Full insurance</li>
+                        <li>Priority handling</li>
+                    </ul>
+                    <button class="btn btn--outline btn--full-width">Choose Premium</button>
+                </div>
+            </div>
+            <div class="custom-quote">
+                <p>Need custom pricing for bulk shipments? <a href="#contact">Contact us</a> for personalized quotes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Our Customers Say</h2>
+                <p>Trusted by businesses across India</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <span>⭐⭐⭐⭐⭐</span>
+                    </div>
+                    <p class="testimonial-text">"Outstanding service! My shipments always arrive on time and in perfect condition."</p>
+                    <div class="testimonial-author">
+                        <h4>Rajesh Kumar</h4>
+                        <span>ABC Electronics</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <span>⭐⭐⭐⭐⭐</span>
+                    </div>
+                    <p class="testimonial-text">"Professional team and excellent tracking system. Highly recommended!"</p>
+                    <div class="testimonial-author">
+                        <h4>Priya Sharma</h4>
+                        <span>Fashion Hub</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <span>⭐⭐⭐⭐⭐</span>
+                    </div>
+                    <p class="testimonial-text">"Reliable partner for all our logistics needs. Great customer service."</p>
+                    <div class="testimonial-author">
+                        <h4>Amit Patel</h4>
+                        <span>Tech Solutions</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tracking Section -->
+    <section class="tracking-section" id="tracking">
+        <div class="container">
+            <div class="section-header">
+                <h2>Track Your Shipment</h2>
+                <p>Enter your tracking number to get real-time updates</p>
+            </div>
+            <div class="tracking-container">
+                <div class="tracking-form">
+                    <input type="text" class="form-control tracking-input" placeholder="Enter tracking number (e.g., SHV123456789)" id="tracking-input">
+                    <button class="btn btn--primary" onclick="trackShipment()">Track Shipment</button>
+                </div>
+                <div class="tracking-result" id="tracking-result"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://images.pexels.com/photos/3510993/pexels-photo-3510993.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&fit=crop" alt="About Shivneri Transport">
+                </div>
+                <div class="about-text">
+                    <div class="section-header">
+                        <h2>About Shivneri Transport</h2>
+                        <p>Founded by Pratik Bhosale, delivering excellence since inception</p>
+                    </div>
+                    <div class="about-story">
+                        <p>SHIVNERI TRANSPORT was founded with a vision to revolutionize the logistics industry in India. Under the leadership of our founder Pratik Bhosale, we have grown from a small local transport service to one of the most trusted names in logistics.</p>
+                        <p>Our commitment to reliability, transparency, and customer satisfaction has helped us build lasting relationships with businesses across the country.</p>
+                    </div>
+                    <div class="usp-points">
+                        <h3>Why Choose Us</h3>
+                        <div class="usp-grid">
+                            <div class="usp-item">
+                                <span class="usp-icon">🕐</span>
+                                <span>24/7 Customer Support</span>
+                            </div>
+                            <div class="usp-item">
+                                <span class="usp-icon">🛡️</span>
+                                <span>Fully Insured Shipments</span>
+                            </div>
+                            <div class="usp-item">
+                                <span class="usp-icon">📍</span>
+                                <span>Real-time GPS Tracking</span>
+                            </div>
+                            <div class="usp-item">
+                                <span class="usp-icon">🏆</span>
+                                <span>ISO Certified Operations</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="contact__form">
-                    <form id="contact-form">
-                        <div class="form-group">
-                            <label class="form-label">Name</label>
-                            <input type="text" class="form-control" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Email</label>
-                            <input type="email" class="form-control" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Subject</label>
-                            <input type="text" class="form-control" name="subject" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Message</label>
-                            <textarea class="form-control" name="message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn--primary btn--full-width">Send Message</button>
-                    </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Footer Section -->
+    <section class="cta-footer">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Ship? Get Your Quote Today!</h2>
+                <p>Join thousands of satisfied customers who trust us with their logistics needs.</p>
+                <div class="cta-actions">
+                    <button class="btn btn--primary btn--lg" onclick="scrollToSection('quote-form')">Get Free Quote</button>
+                    <a href="tel:+919876543210" class="btn btn--outline btn--lg">Call Now</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" id="contact">
         <div class="container">
-            <div class="footer__content">
-                <div class="footer__section">
-                    <h4>Elegance Beauty Salon</h4>
-                    <p>Where Beauty Meets Excellence</p>
-                    <div class="footer__social">
-                        <a href="#" target="_blank">Facebook</a>
-                        <a href="#" target="_blank">Instagram</a>
-                        <a href="#" target="_blank">Twitter</a>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <h3>🚛 SHIVNERI TRANSPORT</h3>
+                        <p>Founded by Pratik Bhosale</p>
+                        <p>Reliable transport solutions across India with professional service and real-time tracking.</p>
                     </div>
                 </div>
-                <div class="footer__section">
-                    <h5>Quick Links</h5>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="#about">About Us</a></li>
                         <li><a href="#services">Services</a></li>
-                        <li><a href="#team">Our Team</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#tracking">Track Shipment</a></li>
+                        <li><a href="#quote-form">Get Quote</a></li>
                     </ul>
                 </div>
-                <div class="footer__section">
-                    <h5>Services</h5>
-                    <ul>
-                        <li><a href="#services">Hair Styling</a></li>
-                        <li><a href="#services">Hair Coloring</a></li>
-                        <li><a href="#services">Beauty Treatments</a></li>
-                        <li><a href="#services">Nail Services</a></li>
-                    </ul>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="contact-info">
+                        <p>📍 123 Transport Hub, Mumbai, Maharashtra 400001</p>
+                        <p>📞 +91-9876543210</p>
+                        <p>✉️ info@shivneritransport.com</p>
+                    </div>
                 </div>
-                <div class="footer__section">
-                    <h5>Contact Info</h5>
-                    <p>123 Beauty Street<br>Fashion District, City 12345</p>
-                    <p>Phone: +1-555-SALON-01</p>
-                    <p>Email: info@elegancebeauty.com</p>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#" target="_blank">Facebook</a>
+                        <a href="#" target="_blank">Twitter</a>
+                        <a href="#" target="_blank">LinkedIn</a>
+                        <a href="#" target="_blank">Instagram</a>
+                    </div>
                 </div>
             </div>
-            <div class="footer__bottom">
-                <p>&copy; 2025 Elegance Beauty Salon. All rights reserved.</p>
+            <div class="footer-bottom">
+                <div class="footer-divider"></div>
+                <div class="footer-bottom-content">
+                    <p>&copy; 2025 Shivneri Transport. All rights reserved. Founded by Pratik Bhosale.</p>
+                    <div class="footer-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookies Policy</a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
