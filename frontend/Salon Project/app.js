@@ -1,537 +1,617 @@
-// Shivneri Transport JavaScript
+// Salon Website JavaScript - Fixed Version
 
-// DOM Content Loaded
 document.addEventListener('DOMContentLoaded', function() {
-    initializeApp();
-});
-
-// Initialize App
-function initializeApp() {
+    // Navigation functionality
     initNavigation();
-    initCarousel();
-    initFormValidation();
-    initScrollEffects();
-    initTestimonials();
-    initTrackingSystem();
-    initHeroButtons();
-}
-
-// Initialize Hero Section Buttons
-function initHeroButtons() {
-    // Fix the Track Shipment button in hero section
-    const heroButtons = document.querySelectorAll('.hero-actions .btn');
-    heroButtons.forEach(button => {
-        if (button.textContent.includes('Track Shipment')) {
-            button.onclick = function() {
-                scrollToSection('tracking');
-            };
-        } else if (button.textContent.includes('Get Quote')) {
-            button.onclick = function() {
-                scrollToSection('quote-form');
-            };
-        }
-    });
-}
+    
+    // Form handling
+    initForms();
+    
+    // Smooth scrolling
+    initSmoothScrolling();
+    
+    // Header scroll behavior
+    initHeaderScroll();
+    
+    // Gallery interactions
+    initGallery();
+    
+    // Animation on scroll
+    initScrollAnimations();
+    
+    // Date input minimum date
+    setMinimumDate();
+    
+    // Fix dropdown functionality
+    fixDropdowns();
+});
 
 // Navigation functionality
 function initNavigation() {
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.getElementById('nav-menu');
-    const navLinks = document.querySelectorAll('.nav-link');
-    const navbar = document.getElementById('navbar');
-
-    // Mobile menu toggle
-    navToggle.addEventListener('click', function() {
-        navMenu.classList.toggle('active');
-        
-        // Animate hamburger menu
-        const spans = navToggle.querySelectorAll('span');
-        spans[0].style.transform = navMenu.classList.contains('active') ? 'rotate(45deg) translate(5px, 5px)' : 'none';
-        spans[1].style.opacity = navMenu.classList.contains('active') ? '0' : '1';
-        spans[2].style.transform = navMenu.classList.contains('active') ? 'rotate(-45deg) translate(7px, -6px)' : 'none';
-    });
-
+    const navLinks = document.querySelectorAll('.nav__link');
+    
+    // Toggle mobile menu
+    if (navToggle) {
+        navToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            navMenu.classList.toggle('show');
+            navToggle.classList.toggle('active');
+        });
+    }
+    
     // Close mobile menu when clicking on links
     navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            navMenu.classList.remove('active');
-            const spans = navToggle.querySelectorAll('span');
-            spans[0].style.transform = 'none';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = 'none';
-        });
-    });
-
-    // Navbar scroll effect
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) {
-            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-            navbar.style.backdropFilter = 'blur(10px)';
-        } else {
-            navbar.style.background = 'var(--color-surface)';
-            navbar.style.backdropFilter = 'none';
-        }
-    });
-
-    // Smooth scrolling for navigation links
-    navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            scrollToSection(targetId);
+            // Don't prevent default here - let the smooth scrolling handle it
+            navMenu.classList.remove('show');
+            navToggle.classList.remove('active');
         });
     });
-}
-
-// Carousel functionality
-function initCarousel() {
-    const carousel = document.getElementById('carousel');
-    const slides = carousel.querySelectorAll('.carousel-slide');
-    const dotsContainer = document.getElementById('carousel-dots');
-    let currentSlide = 0;
-    let slideInterval;
-
-    // Create dots
-    slides.forEach((slide, index) => {
-        const dot = document.createElement('button');
-        dot.classList.add('carousel-dot');
-        if (index === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => goToSlide(index));
-        dotsContainer.appendChild(dot);
-    });
-
-    const dots = dotsContainer.querySelectorAll('.carousel-dot');
-
-    function goToSlide(index) {
-        slides[currentSlide].classList.remove('active');
-        dots[currentSlide].classList.remove('active');
-        
-        currentSlide = index;
-        
-        slides[currentSlide].classList.add('active');
-        dots[currentSlide].classList.add('active');
-    }
-
-    function nextSlide() {
-        const next = (currentSlide + 1) % slides.length;
-        goToSlide(next);
-    }
-
-    function startSlideshow() {
-        slideInterval = setInterval(nextSlide, 5000);
-    }
-
-    function stopSlideshow() {
-        clearInterval(slideInterval);
-    }
-
-    // Start automatic slideshow
-    startSlideshow();
-
-    // Pause on hover
-    carousel.addEventListener('mouseenter', stopSlideshow);
-    carousel.addEventListener('mouseleave', startSlideshow);
-}
-
-// Form validation and submission
-function initFormValidation() {
-    const quoteForm = document.getElementById('quote-form-element');
     
-    if (quoteForm) {
-        quoteForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(this);
-            const data = {
-                origin: document.getElementById('origin').value,
-                destination: document.getElementById('destination').value,
-                weight: document.getElementById('weight').value,
-                date: document.getElementById('date').value,
-                name: document.getElementById('name').value,
-                phone: document.getElementById('phone').value
-            };
-
-            // Validate form data
-            if (validateQuoteForm(data)) {
-                submitQuoteForm(data);
-            }
-        });
-    }
-
-    // Real-time validation
-    const inputs = quoteForm?.querySelectorAll('input') || [];
-    inputs.forEach(input => {
-        input.addEventListener('blur', function() {
-            validateField(this);
-        });
-    });
-}
-
-function validateField(field) {
-    const value = field.value.trim();
-    let isValid = true;
-    let errorMessage = '';
-
-    // Remove previous error styling
-    field.classList.remove('error');
-    const existingError = field.parentNode.querySelector('.error-message');
-    if (existingError) {
-        existingError.remove();
-    }
-
-    switch (field.id) {
-        case 'origin':
-        case 'destination':
-            if (!value) {
-                isValid = false;
-                errorMessage = 'This field is required';
-            }
-            break;
-        case 'weight':
-            if (!value) {
-                isValid = false;
-                errorMessage = 'Please specify weight or size';
-            }
-            break;
-        case 'date':
-            const selectedDate = new Date(value);
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
-            if (!value || selectedDate < today) {
-                isValid = false;
-                errorMessage = 'Please select a valid future date';
-            }
-            break;
-        case 'name':
-            if (!value) {
-                isValid = false;
-                errorMessage = 'Name is required';
-            } else if (value.length < 2) {
-                isValid = false;
-                errorMessage = 'Name must be at least 2 characters';
-            }
-            break;
-        case 'phone':
-            const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
-            if (!value) {
-                isValid = false;
-                errorMessage = 'Phone number is required';
-            } else if (!phoneRegex.test(value.replace(/[\s\-\(\)]/g, ''))) {
-                isValid = false;
-                errorMessage = 'Please enter a valid phone number';
-            }
-            break;
-    }
-
-    if (!isValid) {
-        field.classList.add('error');
-        const errorElement = document.createElement('div');
-        errorElement.className = 'error-message';
-        errorElement.textContent = errorMessage;
-        errorElement.style.color = 'var(--color-error)';
-        errorElement.style.fontSize = 'var(--font-size-sm)';
-        errorElement.style.marginTop = 'var(--space-4)';
-        field.parentNode.appendChild(errorElement);
-    }
-
-    return isValid;
-}
-
-function validateQuoteForm(data) {
-    let isValid = true;
-    const fields = ['origin', 'destination', 'weight', 'date', 'name', 'phone'];
-    
-    fields.forEach(fieldId => {
-        const field = document.getElementById(fieldId);
-        if (field && !validateField(field)) {
-            isValid = false;
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (navToggle && !navToggle.contains(e.target) && !navMenu.contains(e.target)) {
+            navMenu.classList.remove('show');
+            navToggle.classList.remove('active');
         }
     });
-
-    return isValid;
 }
 
-function submitQuoteForm(data) {
-    // Show loading state
-    const submitButton = document.querySelector('#quote-form-element button[type="submit"]');
-    const originalText = submitButton.textContent;
-    submitButton.textContent = 'Processing...';
-    submitButton.disabled = true;
+// Fix dropdown functionality
+function fixDropdowns() {
+    const dropdowns = document.querySelectorAll('select.form-control');
+    
+    dropdowns.forEach(dropdown => {
+        // Ensure dropdowns are properly styled and functional
+        dropdown.style.cursor = 'pointer';
+        
+        dropdown.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+        
+        dropdown.addEventListener('change', function(e) {
+            // Add visual feedback when selection changes
+            if (this.value) {
+                this.style.color = 'var(--color-text)';
+            }
+        });
+    });
+}
 
+// Form handling
+function initForms() {
+    const bookingForm = document.getElementById('booking-form');
+    const contactForm = document.getElementById('contact-form');
+    
+    // Booking form submission
+    if (bookingForm) {
+        bookingForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            handleBookingSubmission(this);
+        });
+    }
+    
+    // Contact form submission
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            handleContactSubmission(this);
+        });
+    }
+}
+
+// Handle booking form submission
+function handleBookingSubmission(form) {
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+    
+    // Validate form
+    if (!validateBookingForm(data)) {
+        return;
+    }
+    
+    // Show loading state
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Booking...';
+    submitBtn.classList.add('loading');
+    submitBtn.disabled = true;
+    
     // Simulate API call
     setTimeout(() => {
-        // Show success message
-        showNotification('Quote request submitted successfully! We will contact you within 2 hours.', 'success');
-        
         // Reset form
-        document.getElementById('quote-form-element').reset();
+        form.reset();
         
         // Reset button
-        submitButton.textContent = originalText;
-        submitButton.disabled = false;
+        submitBtn.textContent = originalText;
+        submitBtn.classList.remove('loading');
+        submitBtn.disabled = false;
+        
+        // Show success message
+        showNotification('Appointment booked successfully! We will contact you shortly to confirm.', 'success');
+        
+        // Log booking data (in real app, this would be sent to server)
+        console.log('Booking submitted:', data);
     }, 2000);
 }
 
-// Scroll effects and smooth scrolling
-function initScrollEffects() {
-    // Intersection Observer for animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    // Observe elements for animation
-    const animatedElements = document.querySelectorAll('.service-card, .fleet-card, .testimonial-card, .pricing-card, .step');
-    animatedElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        observer.observe(el);
-    });
-}
-
-// Smooth scroll to section - Updated to handle tracking section correctly
-function scrollToSection(sectionId) {
-    // Map section aliases to actual IDs
-    const sectionMap = {
-        'tracking': 'tracking',
-        'track': 'tracking',
-        'quote': 'quote-form',
-        'quote-form': 'quote-form'
-    };
-
-    const actualSectionId = sectionMap[sectionId] || sectionId;
-    const section = document.getElementById(actualSectionId);
+// Handle contact form submission
+function handleContactSubmission(form) {
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
     
-    if (section) {
-        const navbarHeight = document.getElementById('navbar').offsetHeight;
-        const sectionTop = section.offsetTop - navbarHeight - 20;
-        
-        window.scrollTo({
-            top: sectionTop,
-            behavior: 'smooth'
-        });
-    }
-}
-
-// Testimonials functionality
-function initTestimonials() {
-    const testimonialCards = document.querySelectorAll('.testimonial-card');
-    
-    testimonialCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-8px) scale(1.02)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-        });
-    });
-}
-
-// Tracking system
-function initTrackingSystem() {
-    const trackingInput = document.getElementById('tracking-input');
-    const trackingResult = document.getElementById('tracking-result');
-
-    if (trackingInput) {
-        trackingInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                trackShipment();
-            }
-        });
-    }
-}
-
-function trackShipment() {
-    const trackingNumber = document.getElementById('tracking-input').value.trim();
-    const trackingResult = document.getElementById('tracking-result');
-
-    if (!trackingNumber) {
-        showNotification('Please enter a tracking number', 'error');
+    // Validate form
+    if (!validateContactForm(data)) {
         return;
     }
-
-    // Validate tracking number format
-    const trackingRegex = /^SHV\d{9}$/i;
-    if (!trackingRegex.test(trackingNumber)) {
-        showNotification('Invalid tracking number format. Please use format: SHV123456789', 'error');
-        return;
-    }
-
-    // Show loading
-    trackingResult.style.display = 'block';
-    trackingResult.innerHTML = '<div class="tracking-loading">🔄 Tracking your shipment...</div>';
-
-    // Simulate tracking API call
+    
+    // Show loading state
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Sending...';
+    submitBtn.classList.add('loading');
+    submitBtn.disabled = true;
+    
+    // Simulate API call
     setTimeout(() => {
-        const mockTrackingData = generateMockTrackingData(trackingNumber);
-        displayTrackingResult(mockTrackingData);
-    }, 2000);
+        // Reset form
+        form.reset();
+        
+        // Reset button
+        submitBtn.textContent = originalText;
+        submitBtn.classList.remove('loading');
+        submitBtn.disabled = false;
+        
+        // Show success message
+        showNotification('Message sent successfully! We will get back to you soon.', 'success');
+        
+        // Log contact data (in real app, this would be sent to server)
+        console.log('Contact form submitted:', data);
+    }, 1500);
 }
 
-function generateMockTrackingData(trackingNumber) {
-    const statuses = [
-        { status: 'Order Confirmed', date: '2025-09-25 10:30', location: 'Mumbai Hub', completed: true },
-        { status: 'Picked Up', date: '2025-09-25 14:15', location: 'Mumbai Hub', completed: true },
-        { status: 'In Transit', date: '2025-09-26 08:45', location: 'Pune Hub', completed: true },
-        { status: 'Out for Delivery', date: '2025-09-27 09:20', location: 'Destination City', completed: true },
-        { status: 'Delivered', date: '2025-09-27 16:30', location: 'Customer Address', completed: false }
-    ];
-
-    return {
-        trackingNumber: trackingNumber,
-        currentStatus: 'Out for Delivery',
-        estimatedDelivery: '2025-09-27',
-        timeline: statuses
-    };
-}
-
-function displayTrackingResult(data) {
-    const trackingResult = document.getElementById('tracking-result');
+// Validate booking form
+function validateBookingForm(data) {
+    const errors = [];
     
-    const html = `
-        <div class="tracking-info">
-            <h3>Tracking: ${data.trackingNumber}</h3>
-            <div class="current-status">
-                <strong>Current Status:</strong> <span class="status status--info">${data.currentStatus}</span>
-            </div>
-            <div class="estimated-delivery">
-                <strong>Estimated Delivery:</strong> ${data.estimatedDelivery}
-            </div>
-            
-            <div class="tracking-timeline">
-                <h4>Shipment Timeline</h4>
-                ${data.timeline.map(item => `
-                    <div class="timeline-item ${item.completed ? 'completed' : 'pending'}">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-status">${item.status}</div>
-                            <div class="timeline-date">${item.date}</div>
-                            <div class="timeline-location">${item.location}</div>
-                        </div>
-                    </div>
-                `).join('')}
-            </div>
-        </div>
-    `;
+    if (!data.name || data.name.trim().length < 2) {
+        errors.push('Please enter a valid name');
+    }
     
-    trackingResult.innerHTML = html;
+    if (!data.phone || !isValidPhone(data.phone)) {
+        errors.push('Please enter a valid phone number');
+    }
+    
+    if (!data.email || !isValidEmail(data.email)) {
+        errors.push('Please enter a valid email address');
+    }
+    
+    if (!data.service) {
+        errors.push('Please select a service');
+    }
+    
+    if (!data.date) {
+        errors.push('Please select a date');
+    } else if (new Date(data.date) <= new Date()) {
+        errors.push('Please select a future date');
+    }
+    
+    if (!data.time) {
+        errors.push('Please select a time');
+    }
+    
+    if (errors.length > 0) {
+        showNotification(errors.join('. '), 'error');
+        return false;
+    }
+    
+    return true;
 }
 
-// Notification system
+// Validate contact form
+function validateContactForm(data) {
+    const errors = [];
+    
+    if (!data.name || data.name.trim().length < 2) {
+        errors.push('Please enter a valid name');
+    }
+    
+    if (!data.email || !isValidEmail(data.email)) {
+        errors.push('Please enter a valid email address');
+    }
+    
+    if (!data.subject || data.subject.trim().length < 5) {
+        errors.push('Please enter a subject');
+    }
+    
+    if (!data.message || data.message.trim().length < 10) {
+        errors.push('Please enter a message (at least 10 characters)');
+    }
+    
+    if (errors.length > 0) {
+        showNotification(errors.join('. '), 'error');
+        return false;
+    }
+    
+    return true;
+}
+
+// Email validation
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+// Phone validation
+function isValidPhone(phone) {
+    const phoneRegex = /^[\+]?[\d\s\-\(\)]{10,}$/;
+    return phoneRegex.test(phone);
+}
+
+// Show notification
 function showNotification(message, type = 'info') {
     // Remove existing notifications
-    const existingNotification = document.querySelector('.notification');
-    if (existingNotification) {
-        existingNotification.remove();
-    }
-
-    // Create notification
+    const existingNotifications = document.querySelectorAll('.notification');
+    existingNotifications.forEach(notification => notification.remove());
+    
+    // Create notification element
     const notification = document.createElement('div');
     notification.className = `notification notification--${type}`;
     notification.innerHTML = `
-        <div class="notification-content">
-            <span class="notification-icon">${getNotificationIcon(type)}</span>
-            <span class="notification-message">${message}</span>
-            <button class="notification-close" onclick="this.parentElement.parentElement.remove()">×</button>
+        <div class="notification__content">
+            <p>${message}</p>
+            <button class="notification__close" type="button">&times;</button>
         </div>
     `;
-
-    // Style notification
+    
+    // Add styles
     notification.style.cssText = `
         position: fixed;
         top: 100px;
         right: 20px;
-        background: var(--color-surface);
-        border: 1px solid var(--color-border);
-        border-radius: var(--radius-base);
-        padding: var(--space-16);
-        box-shadow: var(--shadow-lg);
+        background: ${type === 'success' ? 'var(--color-success)' : type === 'error' ? 'var(--color-error)' : 'var(--color-info)'};
+        color: white;
+        padding: 16px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         z-index: 10000;
         max-width: 400px;
-        transform: translateX(100%);
-        transition: transform var(--duration-normal) var(--ease-standard);
+        animation: slideIn 0.3s ease-out;
+        font-family: var(--font-family-base);
     `;
-
-    // Add type-specific styling
-    if (type === 'success') {
-        notification.style.borderLeftColor = 'var(--color-success)';
-        notification.style.borderLeftWidth = '4px';
-    } else if (type === 'error') {
-        notification.style.borderLeftColor = 'var(--color-error)';
-        notification.style.borderLeftWidth = '4px';
+    
+    // Add animation keyframes
+    if (!document.querySelector('#notification-styles')) {
+        const style = document.createElement('style');
+        style.id = 'notification-styles';
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            @keyframes slideOut {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+            .notification__content {
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+                gap: 12px;
+            }
+            .notification__content p {
+                margin: 0;
+                flex: 1;
+                line-height: 1.4;
+            }
+            .notification__close {
+                background: none;
+                border: none;
+                color: white;
+                font-size: 20px;
+                cursor: pointer;
+                padding: 0;
+                width: 24px;
+                height: 24px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                transition: background-color 0.2s;
+            }
+            .notification__close:hover {
+                background-color: rgba(255, 255, 255, 0.2);
+            }
+        `;
+        document.head.appendChild(style);
     }
-
-    // Add to DOM
+    
+    // Add to page
     document.body.appendChild(notification);
-
-    // Animate in
-    setTimeout(() => {
-        notification.style.transform = 'translateX(0)';
-    }, 100);
-
-    // Auto remove after 5 seconds
-    setTimeout(() => {
-        notification.style.transform = 'translateX(100%)';
+    
+    // Close button functionality
+    const closeBtn = notification.querySelector('.notification__close');
+    closeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        notification.style.animation = 'slideOut 0.3s ease-in';
         setTimeout(() => notification.remove(), 300);
+    });
+    
+    // Auto-hide after 5 seconds
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.style.animation = 'slideOut 0.3s ease-in';
+            setTimeout(() => notification.remove(), 300);
+        }
     }, 5000);
 }
 
-function getNotificationIcon(type) {
-    const icons = {
-        success: '✅',
-        error: '❌',
-        warning: '⚠️',
-        info: 'ℹ️'
-    };
-    return icons[type] || icons.info;
-}
-
-// Pricing plan selection
-document.addEventListener('click', function(e) {
-    if (e.target.textContent.includes('Choose')) {
-        const planName = e.target.closest('.pricing-card').querySelector('h3').textContent;
-        showNotification(`${planName} plan selected! Please fill the quote form for more details.`, 'success');
-        scrollToSection('quote-form');
-    }
-});
-
-// Service cards "Learn More" functionality
-document.addEventListener('click', function(e) {
-    if (e.target.textContent === 'Learn More') {
-        const serviceName = e.target.closest('.service-card').querySelector('h3').textContent;
-        showNotification(`Learn more about ${serviceName}. Contact us for detailed information.`, 'info');
-        scrollToSection('contact');
-    }
-});
-
-// Fleet card hover effects
-document.addEventListener('DOMContentLoaded', function() {
-    const fleetCards = document.querySelectorAll('.fleet-card');
+// Smooth scrolling - Fixed version
+function initSmoothScrolling() {
+    const links = document.querySelectorAll('a[href^="#"]');
     
-    fleetCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-8px)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
+    links.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                const header = document.querySelector('.header');
+                const headerHeight = header ? header.offsetHeight : 0;
+                const targetPosition = targetSection.offsetTop - headerHeight - 20;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
         });
     });
-});
+}
 
-// Handle contact form submission (if any contact forms are added later)
-function handleContactForm(formData) {
-    showNotification('Thank you for your message! We will get back to you within 24 hours.', 'success');
+// Header scroll behavior
+function initHeaderScroll() {
+    const header = document.querySelector('.header');
+    if (!header) return;
+    
+    let lastScrollTop = 0;
+    
+    window.addEventListener('scroll', function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > 100) {
+            header.style.background = 'rgba(255, 255, 255, 0.98)';
+            header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+        } else {
+            header.style.background = 'rgba(255, 255, 255, 0.95)';
+            header.style.boxShadow = 'none';
+        }
+        
+        lastScrollTop = scrollTop;
+    });
+}
+
+// Gallery interactions - Fixed version
+function initGallery() {
+    const galleryItems = document.querySelectorAll('.gallery__item');
+    
+    galleryItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const titleElement = this.querySelector('h4');
+            const descriptionElement = this.querySelector('p');
+            
+            if (titleElement && descriptionElement) {
+                const title = titleElement.textContent;
+                const description = descriptionElement.textContent;
+                showGalleryModal(title, description);
+            }
+        });
+        
+        // Add cursor pointer to indicate clickability
+        item.style.cursor = 'pointer';
+    });
+}
+
+// Show gallery modal - Fixed version
+function showGalleryModal(title, description) {
+    // Remove existing modal
+    const existingModal = document.querySelector('.gallery-modal');
+    if (existingModal) {
+        existingModal.remove();
+    }
+    
+    // Create modal
+    const modal = document.createElement('div');
+    modal.className = 'gallery-modal';
+    modal.innerHTML = `
+        <div class="modal__overlay">
+            <div class="modal__content">
+                <button class="modal__close" type="button">&times;</button>
+                <div class="modal__body">
+                    <div class="modal__image-placeholder">
+                        <h3>${title}</h3>
+                        <p>${description}</p>
+                        <p class="modal__note">Professional gallery images would be displayed here showcasing our work.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // Add modal styles
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    `;
+    
+    // Add modal CSS if not exists
+    if (!document.querySelector('#modal-styles')) {
+        const style = document.createElement('style');
+        style.id = 'modal-styles';
+        style.textContent = `
+            .modal__overlay {
+                background: rgba(0, 0, 0, 0.8);
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+            }
+            .modal__content {
+                background: var(--color-surface);
+                border-radius: 12px;
+                max-width: 600px;
+                width: 100%;
+                position: relative;
+                animation: modalIn 0.3s ease-out;
+            }
+            .modal__close {
+                position: absolute;
+                top: 16px;
+                right: 16px;
+                background: none;
+                border: none;
+                font-size: 28px;
+                cursor: pointer;
+                color: var(--color-text);
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                transition: background-color 0.2s;
+            }
+            .modal__close:hover {
+                background: var(--color-secondary);
+            }
+            .modal__body {
+                padding: 40px 32px 32px;
+            }
+            .modal__image-placeholder {
+                text-align: center;
+                padding: 60px 20px;
+                background: linear-gradient(135deg, var(--color-bg-1), var(--color-bg-2));
+                border-radius: 8px;
+                color: var(--color-text);
+            }
+            .modal__image-placeholder h3 {
+                margin-bottom: 16px;
+                color: var(--color-primary);
+            }
+            .modal__image-placeholder p {
+                margin-bottom: 12px;
+            }
+            .modal__note {
+                font-style: italic;
+                color: var(--color-text-secondary);
+                font-size: 14px;
+                margin-top: 24px;
+            }
+            @keyframes modalIn {
+                from {
+                    opacity: 0;
+                    transform: scale(0.9);
+                }
+                to {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    // Add to page
+    document.body.appendChild(modal);
+    
+    // Close functionality
+    const closeBtn = modal.querySelector('.modal__close');
+    const overlay = modal.querySelector('.modal__overlay');
+    
+    closeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.remove();
+    });
+    
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+            modal.remove();
+        }
+    });
+    
+    // Close with escape key
+    const handleEscape = (e) => {
+        if (e.key === 'Escape') {
+            modal.remove();
+            document.removeEventListener('keydown', handleEscape);
+        }
+    };
+    document.addEventListener('keydown', handleEscape);
+}
+
+// Animation on scroll
+function initScrollAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+            }
+        });
+    }, observerOptions);
+    
+    // Observe elements for animation
+    const elementsToAnimate = document.querySelectorAll('.service__item, .team__member, .testimonial, .feature');
+    elementsToAnimate.forEach(el => observer.observe(el));
+}
+
+// Set minimum date for booking
+function setMinimumDate() {
+    const dateInput = document.querySelector('input[name="date"]');
+    if (dateInput) {
+        const today = new Date();
+        const tomorrow = new Date(today);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        
+        const minDate = tomorrow.toISOString().split('T')[0];
+        dateInput.setAttribute('min', minDate);
+    }
 }
 
 // Utility functions
@@ -547,97 +627,8 @@ function debounce(func, wait) {
     };
 }
 
-// Handle phone number formatting
-document.addEventListener('input', function(e) {
-    if (e.target.id === 'phone') {
-        let value = e.target.value.replace(/\D/g, '');
-        if (value.length > 0) {
-            if (value.startsWith('91')) {
-                value = '+91 ' + value.substring(2);
-            } else if (value.length === 10) {
-                value = '+91 ' + value;
-            }
-        }
-        e.target.value = value;
-    }
-});
-
-// Add loading states to buttons
-document.addEventListener('click', function(e) {
-    if (e.target.classList.contains('btn') && e.target.type === 'submit') {
-        const button = e.target;
-        const originalText = button.textContent;
-        button.disabled = true;
-        button.textContent = 'Processing...';
-        
-        setTimeout(() => {
-            button.disabled = false;
-            button.textContent = originalText;
-        }, 2000);
-    }
-});
-
-// Initialize tooltips for interactive elements
-function initTooltips() {
-    const tooltipElements = document.querySelectorAll('[data-tooltip]');
-    
-    tooltipElements.forEach(element => {
-        element.addEventListener('mouseenter', function(e) {
-            const tooltip = document.createElement('div');
-            tooltip.className = 'tooltip';
-            tooltip.textContent = this.getAttribute('data-tooltip');
-            document.body.appendChild(tooltip);
-            
-            const rect = this.getBoundingClientRect();
-            tooltip.style.left = rect.left + 'px';
-            tooltip.style.top = (rect.top - tooltip.offsetHeight - 10) + 'px';
-        });
-        
-        element.addEventListener('mouseleave', function() {
-            const tooltip = document.querySelector('.tooltip');
-            if (tooltip) {
-                tooltip.remove();
-            }
-        });
-    });
-}
-
-// Call tooltip initialization
-initTooltips();
-
-// Handle browser back/forward navigation
-window.addEventListener('popstate', function(e) {
-    if (e.state && e.state.section) {
-        scrollToSection(e.state.section);
-    }
-});
-
-// Save scroll position for navigation
-const navLinks = document.querySelectorAll('.nav-link');
-navLinks.forEach(link => {
-    link.addEventListener('click', function() {
-        const section = this.getAttribute('href').substring(1);
-        history.pushState({section: section}, '', '#' + section);
-    });
-});
-
-// Performance optimization: Lazy load images
-function lazyLoadImages() {
-    const images = document.querySelectorAll('img[data-src]');
-    
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.remove('lazy');
-                observer.unobserve(img);
-            }
-        });
-    });
-    
-    images.forEach(img => imageObserver.observe(img));
-}
-
-// Initialize lazy loading
-lazyLoadImages();
+// Export functions for potential external use
+window.salonApp = {
+    showNotification,
+    showGalleryModal
+};
