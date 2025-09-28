@@ -57,4 +57,4 @@ jobs:
             docker pull pratik7491/shivneri-frontend:latest
             docker stop shivneri-frontend || true
             docker rm shivneri-frontend || true
-            docker run -d --name shivneri-frontend -p 3000:3000 pratik7491/shivneri-frontend:latest
+            docker run -d --name shivneri-frontend -p 80:80 pratik7491/shivneri-frontend:latest
