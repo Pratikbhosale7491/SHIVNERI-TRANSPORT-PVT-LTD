@@ -32,7 +32,7 @@ jobs:
       - name: Build & Push Frontend
         uses: docker/build-push-action@v3
         with:
-          context: ./frontend
+          context: ./frontend/Salon Project
           push: true
           tags: pratik7491/shivneri-frontend:latest
 
