@@ -32,7 +32,7 @@ jobs:
       - name: Build & Push Frontend
         uses: docker/build-push-action@v3
         with:
-          context: ./frontend
+          context: ./frontend/Salon Project
           push: true
           tags: pratik7491/shivneri-frontend:latest
 
@@ -57,4 +57,4 @@ jobs:
             docker pull pratik7491/shivneri-frontend:latest
             docker stop shivneri-frontend || true
             docker rm shivneri-frontend || true
-            docker run -d --name shivneri-frontend -p 3000:3000 pratik7491/shivneri-frontend:latest
+            docker run -d --name shivneri-frontend -p 80:80 pratik7491/shivneri-frontend:latest
