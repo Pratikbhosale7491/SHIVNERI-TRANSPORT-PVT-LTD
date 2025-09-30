@@ -58,5 +58,6 @@ jobs:
             docker pull pratik7491/shivneri-frontend:latest
             docker stop shivneri-frontend || true
             docker rm shivneri-frontend || true
-            docker run -d --restart always -p 80:80 --name shivneri-frontend pratik7491/shivneri-frontend:latest
+            docker run -d --restart always -p 8081:80 --name shivneri-frontend pratik7491/shivneri-frontend:latest
+
 
