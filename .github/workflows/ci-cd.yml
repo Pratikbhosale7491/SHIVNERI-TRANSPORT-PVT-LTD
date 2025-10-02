@@ -51,7 +51,7 @@ jobs:
             docker pull pratik7491/shivneri-backend:latest
             docker stop shivneri-backend || true
             docker rm shivneri-backend || true
-            docker run -d --restart always -p 8080:8080 --name shivneri-backend pratik7491/shivneri-backend:latest
+            docker run -d --restart always -p 3000:3000 --name shivneri-backend pratik7491/shivneri-backend:latest
 
 
             # Frontend deployment
