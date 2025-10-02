@@ -24,7 +24,7 @@ jobs:
       - name: Build & Push Backend
         uses: docker/build-push-action@v3
         with:
-          context: .
+          context: ./app.js
           push: true
           tags: pratik7491/shivneri-backend:latest
 
