@@ -18,7 +18,6 @@ function initializeApp() {
 
 // Initialize Hero Section Buttons
 function initHeroButtons() {
-    // Fix the Track Shipment button in hero section
     const heroButtons = document.querySelectorAll('.hero-actions .btn');
     heroButtons.forEach(button => {
         if (button.textContent.includes('Track Shipment')) {
@@ -40,18 +39,14 @@ function initNavigation() {
     const navLinks = document.querySelectorAll('.nav-link');
     const navbar = document.getElementById('navbar');
 
-    // Mobile menu toggle
     navToggle.addEventListener('click', function() {
         navMenu.classList.toggle('active');
-        
-        // Animate hamburger menu
         const spans = navToggle.querySelectorAll('span');
         spans[0].style.transform = navMenu.classList.contains('active') ? 'rotate(45deg) translate(5px, 5px)' : 'none';
         spans[1].style.opacity = navMenu.classList.contains('active') ? '0' : '1';
         spans[2].style.transform = navMenu.classList.contains('active') ? 'rotate(-45deg) translate(7px, -6px)' : 'none';
     });
 
-    // Close mobile menu when clicking on links
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
             navMenu.classList.remove('active');
@@ -62,7 +57,6 @@ function initNavigation() {
         });
     });
 
-    // Navbar scroll effect
     window.addEventListener('scroll', function() {
         if (window.scrollY > 50) {
             navbar.style.background = 'rgba(255, 255, 255, 0.95)';
@@ -73,7 +67,6 @@ function initNavigation() {
         }
     });
 
-    // Smooth scrolling for navigation links
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -91,7 +84,6 @@ function initCarousel() {
     let currentSlide = 0;
     let slideInterval;
 
-    // Create dots
     slides.forEach((slide, index) => {
         const dot = document.createElement('button');
         dot.classList.add('carousel-dot');
@@ -105,9 +97,7 @@ function initCarousel() {
     function goToSlide(index) {
         slides[currentSlide].classList.remove('active');
         dots[currentSlide].classList.remove('active');
-        
         currentSlide = index;
-        
         slides[currentSlide].classList.add('active');
         dots[currentSlide].classList.add('active');
     }
@@ -125,10 +115,8 @@ function initCarousel() {
         clearInterval(slideInterval);
     }
 
-    // Start automatic slideshow
     startSlideshow();
 
-    // Pause on hover
     carousel.addEventListener('mouseenter', stopSlideshow);
     carousel.addEventListener('mouseleave', startSlideshow);
 }
@@ -141,7 +129,6 @@ function initFormValidation() {
         quoteForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const formData = new FormData(this);
             const data = {
                 origin: document.getElementById('origin').value,
                 destination: document.getElementById('destination').value,
@@ -151,14 +138,12 @@ function initFormValidation() {
                 phone: document.getElementById('phone').value
             };
 
-            // Validate form data
             if (validateQuoteForm(data)) {
                 submitQuoteForm(data);
             }
         });
     }
 
-    // Real-time validation
     const inputs = quoteForm?.querySelectorAll('input') || [];
     inputs.forEach(input => {
         input.addEventListener('blur', function() {
@@ -172,7 +157,6 @@ function validateField(field) {
     let isValid = true;
     let errorMessage = '';
 
-    // Remove previous error styling
     field.classList.remove('error');
     const existingError = field.parentNode.querySelector('.error-message');
     if (existingError) {
@@ -252,25 +236,37 @@ function validateQuoteForm(data) {
 }
 
 function submitQuoteForm(data) {
-    // Show loading state
     const submitButton = document.querySelector('#quote-form-element button[type="submit"]');
     const originalText = submitButton.textContent;
     submitButton.textContent = 'Processing...';
     submitButton.disabled = true;
 
-    // Simulate API call
-    setTimeout(() => {
-        // Show success message
+    fetch('http://13.204.139.95:3000/api/quote', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(result => {
         showNotification('Quote request submitted successfully! We will contact you within 2 hours.', 'success');
-        
-        // Reset form
         document.getElementById('quote-form-element').reset();
-        
-        // Reset button
+    })
+    .catch(error => {
+        showNotification('Failed to submit quote request. Please try again later.', 'error');
+    })
+    .finally(() => {
         submitButton.textContent = originalText;
         submitButton.disabled = false;
-    }, 2000);
+    });
 }
+
+// rest of your functions remain unchanged ...
+
 
 // Scroll effects and smooth scrolling
 function initScrollEffects() {
