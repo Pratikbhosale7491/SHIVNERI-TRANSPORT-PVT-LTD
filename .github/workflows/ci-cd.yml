@@ -59,5 +59,8 @@ jobs:
             docker stop shivneri-frontend || true
             docker rm shivneri-frontend || true
             docker run -d --restart always -p 8081:80 --name shivneri-frontend pratik7491/shivneri-frontend:latest
-
+            # Docker Compose deployment
+            cd /home/ubuntu/SHIVNERI-TRANSPORT-PVT-LTD
+            docker-compose pull
+            docker-compose up -d --remove-orphans
 
