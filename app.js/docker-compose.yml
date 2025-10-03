@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  backend:
+    image: pratik7491/shivneri-backend:latest
+    container_name: shivneri-backend
+    ports:
+      - "8000:8000"
+    networks:
+      - app-net
+
+  frontend:
+    image: pratik7491/shivneri-frontend:latest
+    container_name: shivneri-frontend
+    ports:
+      - "8081:80"
+    networks:
+      - app-net
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./prometheus-2.53.1.linux-amd64/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - app-net
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    driver: bridge
