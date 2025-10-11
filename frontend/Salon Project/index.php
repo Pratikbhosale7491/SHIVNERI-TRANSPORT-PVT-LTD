@@ -25,7 +25,7 @@
             </div>
             <div class="nav-actions">
                 <span class="nav-phone">📞 +91-8975207399</span>
-                <button class="btn btn--primary btn--sm">Login</button>
+                <a href="/login/index.php" class="btn btn--primary btn--sm">Login</a>
                 <button class="nav-toggle" id="nav-toggle">
                     <span></span>
                     <span></span>
